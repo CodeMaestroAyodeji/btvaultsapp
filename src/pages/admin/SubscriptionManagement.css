@@ -1,0 +1,32 @@
+.subscription-management {
+    padding: 20px;
+  }
+  
+  .plan-cards {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+  }
+  
+  .plan-card {
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    padding: 16px;
+    width: 200px;
+    text-align: center;
+    background-color: #f9f9f9;
+  }
+  
+  .plan-card h3 {
+    margin: 0 0 10px;
+  }
+  
+  .btn {
+    margin-top: 10px;
+  }
+
+  .create-plan {
+    color: var(--primary-color);
+    margin-bottom: 20px;
+  }
+  

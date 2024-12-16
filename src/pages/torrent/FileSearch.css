@@ -1,0 +1,116 @@
+:root {
+    --primary-color: #FFC107;
+    --secondary-color: #212121;
+    --button-color: #007bff;
+    --button-hover-color: #0056b3;
+    --alert-danger-bg: #f8d7da;
+    --alert-info-bg: #d1ecf1;
+    --success-color: #28a745;
+    --danger-color: #dc3545;
+    --light-grey: #f8f9fa;
+    --font-family: 'Arial', sans-serif;
+}
+
+body {
+    font-family: var(--font-family);
+}
+
+.file-search-container {
+    background-color: var(--light-grey);
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    margin: 20px auto;
+}
+
+ul li {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.title {
+    color: var(--primary-color);
+    font-size: 1.8rem;
+    text-align: center;
+    margin-bottom: 15px;
+}
+
+.input-group {
+    display: flex;
+    gap: 10px;
+}
+
+.results-list {
+    list-style: none;
+    padding: 0;
+    margin: 20px 0;
+}
+
+.result-item {
+    background-color: #fff;
+    padding: 15px;
+    border-radius: 4px;
+    margin-bottom: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.file-name {
+    font-size: 1.2rem;
+    font-weight: bold;
+}
+
+.file-details {
+    margin-top: 10px;
+    display: flex;
+    gap: 20px;
+    font-size: 0.9rem;
+}
+
+.file-details .icon {
+    margin-right: 5px;
+}
+
+.seeders-icon {
+    color: var(--success-color);
+}
+
+.leechers-icon {
+    color: var(--danger-color);
+}
+
+.size-icon {
+    color: var(--primary-color);
+}
+
+.file-actions {
+    margin-top: 10px;
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.magnet-link {
+    text-decoration: none;
+    color: var(--button-color);
+    font-weight: bold;
+}
+
+.copy-button {
+    color: var(--button-color);
+    font-weight: bold;
+    font-size: 10px !important;
+}
+
+.pagination {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 20px;
+}
+
+.page-info {
+    font-weight: bold;
+}

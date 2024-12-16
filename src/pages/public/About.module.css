@@ -1,0 +1,32 @@
+:root {
+  --primary-color: #FFC107;
+  --secondary-color: #212121;
+  --additional-color-orange: #FFA500;
+  --additional-color-gray: #808080;
+}
+
+/* Main Container Styling */
+.aboutusContainer {
+  max-width: 1200px;
+  margin: 40px auto;
+  padding: 20px 20px 120px 20px;
+  background-color: #f9f9f9;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.aboutusContainer h1 {
+  font-size: 28px;
+  color: var(--secondary-color);
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+/* Content Section Styling */
+.aboutContent p {
+  font-size: 16px;
+  color: var(--additional-color-gray);
+  line-height: 1.6;
+  margin-bottom: 16px;
+  text-align: left;
+}

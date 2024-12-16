@@ -1,0 +1,17 @@
+.torrents-card {  
+    margin: 20px auto; /* Center the card */  
+    max-width: 100%; /* Set max-width for better readability */  
+    border-radius: 10px; /* Rounded corners */  
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1); /* Subtle shadow */  
+}  
+
+.torrents-content {  
+    display: flex; /* Use flexbox for layout */  
+    flex-direction: column; /* Stack components vertically */  
+    gap: 15px; /* Space between components */  
+    margin-top: 15px; /* Margin at the top */  
+}  
+
+.torrents-card h3 {  
+    margin-bottom: 20px; /* Spacing below the title */  
+}

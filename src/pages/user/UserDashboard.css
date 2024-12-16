@@ -1,0 +1,108 @@
+/* UserDashboard.module.css */
+
+/* Root styles for colors and fonts */
+:root {
+    --primary-color: #FFC107;
+    --secondary-color: #212121;
+    --button-color: #ee4710;
+    --button-hover-color: #FFA500;
+    --card-bg-color: #f8f9fa;
+    --font-family: 'Arial', sans-serif;
+  }
+  
+  /* General Styles */
+  body {
+    margin: 0;
+    padding: 0;
+    font-family: var(--font-family);
+    background-color: var(--secondary-color);
+    color: #fff;
+  }
+  
+  .dashboardContainer {
+    display: flex;
+    height: 100vh; /* Full viewport height */
+    width: 100%; /* Ensure full width */
+  }
+  
+  /* Sidebar Styles */
+  .sidebar {
+    width: 20%; /* 20% width for sidebar */
+    background-color: var(--secondary-color);
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .dashboardTabs {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  
+  /* Button Styles */
+  .dashboardTabs button {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    font-size: 1rem;
+    color: #fff;
+    background-color: transparent;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+  }
+  
+  .dashboardTabs button:hover {
+    background-color: var(--button-hover-color);
+  }
+  
+  .dashboardTabs button.active {
+    background-color: var(--primary-color);
+    color: #212121;
+  }
+  
+  /* Content area */
+  .dashboardContent {
+    flex: 1; /* Take remaining space */
+    padding: 20px;
+    background-color: var(--card-bg-color);
+    border-radius: 12px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+    overflow-y: auto;
+  }
+  
+  /* Spinner and Alert Styles */
+  .spinner {
+    text-align: center;
+    font-size: 1.5rem;
+  }
+  
+  .alert {
+    color: #e74c3c; /* Red color for errors */
+  }
+  
+  /* Logout button */
+  .logoutBtn {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    color: #fff;
+  }
+  
+  /* Responsive Styles */
+  @media screen and (max-width: 768px) {
+    .dashboardContainer {
+      flex-direction: column;
+    }
+  
+    .sidebar {
+      width: 100%; /* Full width on small screens */
+    }
+  
+    .dashboardContent {
+      padding: 15px;
+    }
+  }
+  

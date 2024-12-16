@@ -1,0 +1,54 @@
+/* Analytics.css */
+.analytics-card {
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    background-color: var(--card-bg-color);
+}
+
+.loading-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.loading-text {
+    margin-left: 10px;
+}
+
+.metric-card {
+    margin-bottom: 20px;
+    border: 1px solid var(--primary-color);
+    border-radius: 10px;
+    text-align: center;
+    padding: 15px;
+    background-color: #fff;
+    transition: transform 0.2s;
+}
+
+.metric-card:hover {
+    transform: scale(1.05);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+.metric-icon {
+    font-size: 40px;
+    color: var(--primary-color);
+}
+
+.card-title {
+    font-weight: bold;
+    margin-top: 10px;
+}
+
+.card-text {
+    font-size: 18px;
+    color: var(--secondary-color);
+}
+
+/* Adjustments for responsiveness */
+@media (max-width: 768px) {
+    .metric-card {
+        margin-bottom: 15px;
+    }
+}

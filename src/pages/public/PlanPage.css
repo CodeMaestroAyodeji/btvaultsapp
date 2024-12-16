@@ -1,0 +1,83 @@
+:root {
+  --primary-color: #FFC107;
+  --secondary-color: #212121;
+  --button-color: #ee4710;
+  --button-hover-color: #FFA500;
+  --card-bg-color: #f8f9fa;
+  --font-family: 'Arial', sans-serif;
+}
+
+.public-plan-page {
+  width: 100%;
+  padding: 40px;
+  background-color: #f0f4f8;
+  text-align: center;
+}
+
+h2 {
+  margin-bottom: 30px;
+  font-family: var(--font-family);
+  color: var(--secondary-color);
+}
+
+.plan-cards {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+}
+
+.plan-card {
+  border: 1px solid #ddd;
+  border-radius: 12px;
+  padding: 30px;
+  width: 250px;
+  text-align: center;
+  background-color: var(--card-bg-color);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.plan-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+}
+
+.plan-card h3 {
+  margin: 0 0 15px;
+  font-size: 1.5em;
+  color: var(--primary-color);
+}
+
+.plan-card p {
+  margin: 0 0 15px;
+  font-size: 1.2em;
+  color: var(--secondary-color);
+}
+
+.price {
+  font-size: 1.2em;
+  font-weight: bold;
+  color: var(--button-color);
+}
+
+.btn {
+  margin-top: 15px;
+  padding: 10px 20px;
+  background-color: var(--button-color);
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.btn:hover {
+  background-color: var(--button-hover-color);
+}
+
+@media (max-width: 600px) {
+  .plan-card {
+      width: 90%; /* Full width on small screens */
+  }
+}

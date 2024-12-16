@@ -1,0 +1,27 @@
+/* App container for full-page layout */
+.app-container {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh; /* Full viewport height */
+  }
+  
+  /* Main content should grow to fill available space */
+  .content {
+    flex: 1; /* Allow this section to expand */
+    padding: 20px; /* Optional: Add some padding for content spacing */
+    display: flex;
+    flex-direction: column; /* Stack children vertically */
+    align-items: center; /* Center items horizontally if needed */
+    justify-content: start; /* Adjust vertical alignment (e.g., top, center) */
+  }
+  
+  /* Header and footer styles (optional for consistency) */
+  header {
+    flex-shrink: 0; /* Prevent shrinking */
+  }
+  
+  footer {
+    flex-shrink: 0; /* Prevent shrinking */
+    margin-top: auto; /* Push footer to the bottom */
+  }
+  

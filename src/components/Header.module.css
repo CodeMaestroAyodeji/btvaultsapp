@@ -1,0 +1,183 @@
+:root {
+  --primary-color: #FFC107;
+  --secondary-color: #212121;
+  --additional-color-orange: #FFA500;
+  --additional-color-gray: #808080;
+  --button-color: #ee4710;
+  --hover-color: #FFD54F;
+  --background-light: #f6f6f6;
+}
+
+/* General Header Container */
+.headerContainer {
+  width: 100%;
+  padding: 10px 20px; /* Adjust padding for balance */
+  background-color: white;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+/* Branding Section */
+.brand {
+  display: flex;
+  align-items: center;
+}
+
+.logo {
+  width: 50px; /* Balanced logo size for all devices */
+  height: auto;
+  display: block;
+}
+
+/* Navigation Links */
+.navLinks {
+  display: flex;
+  align-items: center;
+  gap: 25px;
+  margin-right: 20px;
+}
+
+.navLinks a {
+  color: var(--secondary-color);
+  font-size: 16px;
+  font-weight: bold;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  padding: 5px 10px;
+  border-radius: 4px;
+  transition: color 0.3s ease, background-color 0.3s ease;
+}
+
+.navButton {
+  border: none;
+  background-color: transparent;
+  padding: 10px 15px;
+  font-weight: bold;
+  font-size: 14px;
+}
+
+.dashBtn {
+  margin-right: 5px;
+  font-size: 18px;
+}
+
+/* Hover Effects */
+.navLinks a:hover,
+.navButton:hover {
+  color: var(--button-color);
+  background-color: var(--background-light);
+}
+
+/* Login Button */
+.loginBtn {
+  background-color: var(--button-color);
+  color: white !important;
+  padding: 10px 15px;
+  border-radius: 5px;
+  font-weight: bold;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.loginBtn:hover {
+  background-color: var(--hover-color);
+  transform: scale(1.05);
+  color: var(--button-color) !important;
+}
+
+/* Hamburger Menu (Mobile View) */
+.hamburger {
+  display: none;
+  flex-direction: column;
+  cursor: pointer;
+  padding: 0;
+  border: none;
+  background: transparent;
+}
+
+.bar {
+  width: 30px;
+  height: 4px;
+  background-color: var(--secondary-color);
+  margin: 3px 0;
+  border-radius: 2px;
+  transition: all 0.3s ease;
+}
+
+.hamburger.open .bar:nth-child(1) {
+  transform: rotate(45deg) translate(5px, 5px);
+}
+
+.hamburger.open .bar:nth-child(2) {
+  opacity: 0;
+}
+
+.hamburger.open .bar:nth-child(3) {
+  transform: rotate(-45deg) translate(5px, -5px);
+}
+
+/* Active Navigation State */
+.navLinks.active {
+  display: flex;
+  flex-direction: column; /* Stack links vertically on mobile */
+  gap: 15px;
+  background: white;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+  position: absolute;
+  top: 100%;
+  right: 0;
+  padding: 15px;
+  border-radius: 5px;
+}
+
+.closeMenu {
+  display: none;
+  align-self: flex-end;
+  font-size: 20px;
+  cursor: pointer;
+  background: transparent;
+  border: none;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+  .hamburger {
+    display: flex;
+    margin-right: 20px;
+  }
+
+  .navLinks {
+    display: none;
+  }
+
+  .navLinks.active {
+    display: flex;
+  }
+
+  .loginBtn {
+    background-color: transparent;
+    color: var(--button-color);
+  }
+}
+
+@media (max-width: 425px) {
+  .logo {
+    width: 40px;
+  }
+
+  .navLinks {
+    max-width: 200px;
+  }
+
+  .loginBtn {
+    font-size: 14px;
+  }
+}
