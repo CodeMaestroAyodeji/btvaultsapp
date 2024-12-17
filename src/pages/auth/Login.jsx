@@ -6,6 +6,8 @@ import 'react-toastify/dist/ReactToastify.css';
 import { useNavigate } from 'react-router-dom';  
 import ReCAPTCHA from 'react-google-recaptcha';  
 import '../../assets/css/style.css';  
+import axios from '../../axios';  
+import { apiUrl } from '../../config/envConfig';  
 
 const Login = () => {  
   const [email, setEmail] = useState('');  
@@ -27,7 +29,7 @@ const Login = () => {
     }
   
     try {
-      const response = await fetch('/api/auth/login', {
+      const response = await axios.fetch(`${apiUrl}/api/auth/login`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ email, password }),
