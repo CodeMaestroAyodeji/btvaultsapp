@@ -7,7 +7,8 @@ import { useNavigate } from 'react-router-dom';
 import ReCAPTCHA from 'react-google-recaptcha';
 import '../../assets/css/style.css';
 import axios from 'axios'; 
-import { apiUrl } from '../../config/envConfig';
+import apiUrl from '../../config/envConfig';
+
 
 const Login = () => {
   const [email, setEmail] = useState('');
