@@ -151,7 +151,7 @@
 @media (max-width: 768px) {
   .hamburger {
     display: flex;
-    margin-right: 20px;
+    margin-left: 647px;
   }
 
   .navLinks {
@@ -164,13 +164,59 @@
 
   .loginBtn {
     background-color: transparent;
-    color: var(--button-color);
+    color: var(--button-color) !important;
   }
 }
 
 @media (max-width: 425px) {
+
+  .hamburger {
+    display: flex;
+    margin-left: 320px;
+  }
+
   .logo {
     width: 40px;
+  }
+
+  .navLinks {
+    max-width: 200px;
+  }
+
+  .loginBtn {
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 375px) {
+
+  .hamburger {
+    display: flex;
+    margin-left: 265px;
+  }
+
+  .logo {
+    width: 35px;
+  }
+
+  .navLinks {
+    max-width: 200px;
+  }
+
+  .loginBtn {
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 320px) {
+
+  .hamburger {
+    display: flex;
+    margin-left: 210px;
+  }
+
+  .logo {
+    width: 35px;
   }
 
   .navLinks {

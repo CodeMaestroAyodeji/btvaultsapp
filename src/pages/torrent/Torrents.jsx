@@ -8,7 +8,7 @@ import './Torrents.css';
 const Torrents = () => {
     return (
         <Card className="torrents-card">
-            <Card.Body>
+            <Card.Body className='torrents-body'>
                 {/* <Card.Title className="text-center">Torrents Management</Card.Title> */}
                 <div className="torrents-content">
                     <MagnetLinkInput />

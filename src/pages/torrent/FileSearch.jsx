@@ -73,64 +73,66 @@ const FileSearch = () => {
 
     return (
         <div className="file-search-container">
-            <h2 className="title">Search Torrents</h2>
+            <h2 className="file-search-title">Search Torrents</h2>
 
             {error && <div className="alert alert-danger">{error}</div>}
 
-            <div className="input-group mb-3">
+            <div className="file-search-input-group mb-3">
                 <input
                     type="text"
                     placeholder="Search for .torrent files"
                     value={searchTerm}
                     onChange={(e) => setSearchTerm(e.target.value)}
                     disabled={loading}
-                    className="form-control"
+                    className="form-control file-search-form-control"
                 />
                 <button
                     onClick={handleSearch}
                     disabled={loading || !searchTerm.trim()}
-                    className="btn btn-primary"
+                    className="file-search-btn btn-primary"
                 >
-                    <FaSearch /> {loading ? 'Searching...' : 'Search'}
+                    <FaSearch /> {loading ? 'Searching...' : ''}
                 </button>
             </div>
 
             {results.length > 0 && (
                 <>
-                    <ul className="results-list">
+                    <l className="results-list">
                         {paginateResults().map((file) => (
                             <li key={file.id} className="result-item">
-                                <h4 className="file-name">{file.name}</h4>
-                                <div className="file-details">
-                                    <span>
-                                        <FaSeedling className="icon seeders-icon" /> {file.seeders}
-                                    </span>
-                                    <span>
-                                        <FaDownload className="icon leechers-icon" /> {file.leechers}
-                                    </span>
-                                    <span>
-                                        <FaHdd className="icon size-icon" /> {formatSize(file.size)}
-                                    </span>
-                                </div>
-                                <div className="file-actions">
+                                <h4 className="results-file-name">{file.name}</h4>
+                                <span className="results-file-details-container">
+                                    <div className="results-file-details">
+                                        <span>
+                                            <FaSeedling className="results-icon results-seeders-icon" /> {file.seeders}
+                                        </span>
+                                        <span>
+                                            <FaDownload className="results-icon results-leechers-icon" /> {file.leechers}
+                                        </span>
+                                        <span>
+                                            <FaHdd className="results-icon results-size-icon" /> {formatSize(file.size)}
+                                        </span>
+                                    </div>
+                                    <div className="results-file-actions">
                                     <a
                                         href={file.magnetLink}
                                         target="_blank"
                                         rel="noopener noreferrer"
-                                        className="magnet-link"
+                                        className="results-magnet-link"
                                     >
-                                        <FaLink /> Magnet Link
+                                        <FaLink />
                                     </a>
                                     <button
                                         onClick={() => copyToClipboard(file.magnetLink)}
-                                        className="btn btn-link copy-button"
+                                        className="results-btn results-btn-link results-copy-button"
                                     >
-                                        <FaClipboard /> Copy
+                                        <FaClipboard />
                                     </button>
-                                </div>
+                                    </div>
+                                </span>
                             </li>
                         ))}
-                    </ul>
+                    </l>
 
                     <div className="pagination">
                         <button
@@ -138,7 +140,7 @@ const FileSearch = () => {
                             disabled={currentPage === 1}
                             className="btn btn-secondary"
                         >
-                            <FaArrowCircleLeft /> Previous
+                            <FaArrowCircleLeft />
                         </button>
                         <span className="page-info">
                             Page {currentPage} of {totalPages}
@@ -148,7 +150,7 @@ const FileSearch = () => {
                             disabled={currentPage === totalPages}
                             className="btn btn-secondary"
                         >
-                            Next <FaArrowCircleRight />
+                            <FaArrowCircleRight />
                         </button>
                     </div>
                 </>

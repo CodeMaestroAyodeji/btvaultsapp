@@ -62,6 +62,10 @@
     background-color: var(--primary-color);
     color: #212121;
   }
+
+  .dashboardTabs-icon {
+    margin-right: 10px ;
+  }
   
   /* Content area */
   .dashboardContent {
@@ -104,5 +108,55 @@
     .dashboardContent {
       padding: 15px;
     }
+
+    .dashboardTabs {
+      flex-direction: row;
+      gap: 10px;
+    }
+
   }
   
+
+  /* Responsive Styles */
+  @media screen and (max-width: 425px) {
+    .content {
+      padding: 0;
+  }
+  
+    .dashboardContainer {
+      flex-direction: column;
+    }
+  
+    .dashboardContent {
+      padding: 0px;
+      overflow-y: 0;
+    }
+    .dashboardTabs button {
+      font-size: 12px;
+      padding: 0;
+    }
+
+  }
+
+  @media screen and (max-width: 375px) {
+    
+
+    .dashboardTabs button {
+      font-size: 12px;
+    }
+
+    .dashboardTabs-icon {
+      margin-right: 5px ;
+    }
+  }
+
+  @media screen and (max-width: 320px) {
+
+    .dashboardTabs button {
+      font-size: 10.5px;
+    }
+
+    .dashboardTabs-icon {
+      margin-right: 2px ;
+    }
+  }

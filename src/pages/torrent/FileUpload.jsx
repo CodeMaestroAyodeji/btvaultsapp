@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { FaUpload } from 'react-icons/fa';
 import axios from 'axios';
 import apiUrl from '../../config/envConfig';
-import './MagnetLinkInput.css';
+import './FileUpload.css';
 
 const FileUpload = () => {
     const [selectedFile, setSelectedFile] = useState(null);
@@ -46,7 +46,7 @@ const FileUpload = () => {
 
     return (
         <div className="file-upload-container">
-            <h2 className="title">Upload Torrent File</h2>
+            <h2 className="file-upload-title">Upload Torrent File</h2>
 
             {alertMessage && (
                 <div
@@ -57,20 +57,20 @@ const FileUpload = () => {
                 </div>
             )}
 
-            <div className="input-group">
+            <div className="file-upload-input-group">
                 <input
                     type="file"
                     onChange={handleFileChange}
                     disabled={loading}
-                    className="input-file"
+                    className="file-upload-input-file"
                     aria-label="Select file"
                 />
                 <button
                     onClick={handleUpload}
                     disabled={loading || !selectedFile}
-                    className="btn btn-upload"
+                    className="file-upload-btn btn-upload"
                 >
-                    <FaUpload className="icon" />
+                    <FaUpload className="file-upload-icon" />
                     {loading ? 'Uploading...' : 'Upload'}
                 </button>
             </div>

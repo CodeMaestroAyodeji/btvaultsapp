@@ -4,7 +4,8 @@ import axios from 'axios';
 import { toast, ToastContainer } from 'react-toastify';  
 import apiUrl from '../../config/envConfig';  
 import 'react-toastify/dist/ReactToastify.css';  
-import '../user/UserDashboard.css';  
+import '../user/UserDashboard.css';
+import './AdminDashboard.css';  
 import Analytics from './Analytics';  
 import SubscriptionManagement from './SubscriptionManagement';  
 import UserManagement from './UserManagement';  
@@ -72,17 +73,17 @@ const UserDashboard = () => {
                   className={activeTab === tab ? "active" : ""}  
                   onClick={() => setActiveTab(tab)}  
                 >  
-                  {tab === "Torrents" && <FaUserCircle />}
-                  {tab === "Profile" && <FaUserCircle />}  
-                  {tab === "Users" && <FaUsers />}  
-                  {tab === "Subscription" && <FaClipboardList />}  
-                  {tab === "Analytics" && <FaChartBar />}  
+                  {tab === "Torrents" && <FaUserCircle className='dashboardTabs-icon'/>}
+                  {tab === "Profile" && <FaUserCircle className='dashboardTabs-icon'/>}  
+                  {tab === "Users" && <FaUsers className='dashboardTabs-icon'/>}  
+                  {tab === "Subscription" && <FaClipboardList className='dashboardTabs-icon'/>}  
+                  {tab === "Analytics" && <FaChartBar className='dashboardTabs-icon'/>}  
                   {tab}  
                 </button>  
               ))}  
               <div className="logoutSection">  
                   <button className="logoutBtn" onClick={handleLogout}>  
-                      <FaSignOutAlt /> Logout  
+                      <FaSignOutAlt className='dashboardTabs-icon'/> Logout  
                   </button>  
               </div>  
             </div>  

@@ -66,29 +66,29 @@ const UserDashboard = () => {
                   className={activeTab === "Torrents" ? "active" : ""}
                   onClick={() => setActiveTab("Torrents")}
               >
-                  <FaCloudDownloadAlt /> Torrents
+                  <FaCloudDownloadAlt className='dashboardTabs-icon'/> Torrents
               </button>
               <button
                   className={activeTab === "Files" ? "active" : ""}
                   onClick={() => setActiveTab("Files")}
               >
-                  <FaFolderOpen /> My Files
+                  <FaFolderOpen className='dashboardTabs-icon'/> My Files
               </button>
               <button
                   className={activeTab === "Analytics" ? "active" : ""}
                   onClick={() => setActiveTab("Analytics")}
               >
-                  <FaChartBar /> Analytics
+                  <FaChartBar className='dashboardTabs-icon'/> Analytics
               </button>
               <button
                   className={activeTab === "Profile" ? "active" : ""}
                   onClick={() => setActiveTab("Profile")}
               >
-                  <FaUserCircle /> Profile
+                  <FaUserCircle className='dashboardTabs-icon'/> Profile
               </button>
               <div className="logoutSection">
                   <button className="logoutBtn" onClick={handleLogout}>
-                      <FaSignOutAlt /> Logout
+                      <FaSignOutAlt className='dashboardTabs-icon'/> Logout
                   </button>
               </div>
             </div>

@@ -1,3 +1,16 @@
-div p {
-    color: black;
+.analytics-container {  
+    padding: 20px;  
+}  
+
+.metric-card {  
+    text-align: center;  
+    margin-bottom: 20px;  
+    border-radius: 8px;  
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);  
+}  
+
+.metric-icon {  
+    font-size: 2rem;  
+    color: #007bff; /* Bootstrap primary color */  
+    margin-bottom: 10px;  
 }

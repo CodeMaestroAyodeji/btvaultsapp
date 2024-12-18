@@ -1,10 +1,23 @@
 /* Files.css */
 
+/* Common Styles */  
+:root {  
+    --primary-color: #FFC107;  
+    --secondary-color: #212121;  
+    --button-color: #ee4710;  
+    --button-hover-color: #FFA500;  
+    --card-bg-color: #f8f9fa;  
+    --font-family: 'Arial', sans-serif;  
+}
+
 .category-container {
     margin-bottom: 20px;
+    display: flex;
+    flex-direction: column;
 }
 
 .category-header {
+    width: 100%;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -15,7 +28,14 @@
 }
 
 .category-header h5 {
-    margin: 0;
+    width: 90%;
+}
+
+.category-header-button {
+    width: 10%;
+    background-color: transparent !important;
+    color: var(--secondary-color) !important;
+    margin-top: -10px !important;
 }
 
 .table th, .table td {
@@ -24,4 +44,37 @@
 
 .table td {
     vertical-align: middle;
+}
+
+.action-data {
+    display: flex;
+    flex-direction: row;
+}
+
+.action-data button {
+    background-color: transparent;
+    color: var(--button-color);
+}
+
+@media screen and (max-width: 425px) {
+    .category-header h5 {
+        font-size: 11px;
+    }
+    
+    .table th, .table td {
+        font-size: small;
+        flex-wrap: wrap;
+    }
+
+    .table th {
+        font-size: 10px;
+    }
+    
+    .action-data {
+        gap: 0px;
+    }
+    
+    .action-data button {
+        font-size: 10px;
+    }
 }

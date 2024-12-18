@@ -2,7 +2,9 @@ import { useEffect, useState } from 'react';
 import axios from 'axios';  
 import apiUrl from '../../config/envConfig';  
 import { Table, Pagination, Card, Spinner, Button, ProgressBar } from 'react-bootstrap';  
-import { FaTrash, FaDownload, FaCompress, FaPlay, FaPause, FaStop } from 'react-icons/fa';  
+import { FaTrash, FaSeedling, FaHdd, FaDownload, FaCompress, FaPlay, FaPause, FaStop, FaRegMinusSquare, FaRegPlusSquare  } from 'react-icons/fa'; 
+// import { FaRegMinusSquare } from "react-icons/fa";
+
 import './Files.css';  
 
 const Files = () => {  
@@ -53,9 +55,11 @@ const Files = () => {
                 ) : (  
                     <>  
                         <div className="category-container">  
-                            <div className="category-header" onClick={() => setDownloadedVisible(!downloadedVisible)}>  
+                            <div className="category-header" onClick={() => setDownloadedVisible(!downloadedVisible)}> 
+                            <Button variant="link" className='category-header-button'>{ downloadedVisible ? <FaRegPlusSquare /> : <FaRegMinusSquare /> }</Button>
+
                                 <h5>Downloaded Files ({downloadedFiles.length}) - Total Size: {totalDownloadedSize} MB</h5>  
-                                <Button variant="link">{downloadedVisible ? 'Hide' : 'Show'}</Button>  
+                                  
                             </div>  
                             {downloadedVisible && (  
                                 <Table striped bordered hover responsive>  
@@ -75,11 +79,11 @@ const Files = () => {
                                             <tr key={file._id}>  
                                                 <td>{index + 1}</td>  
                                                 <td>{file.fileName}</td>  
-                                                <td>{file.size}</td>  
-                                                <td>{file.seeders}</td>  
-                                                <td>{file.leechers}</td>  
+                                                <td>{file.size} <FaHdd className="results-icon results-size-icon" /></td>  
+                                                <td>{file.seeders} <FaSeedling className="results-icon results-seeders-icon" /></td>  
+                                                <td>{file.leechers} <FaDownload className="results-icon results-leechers-icon" /></td>  
                                                 <td>{file.status}</td>  
-                                                <td>  
+                                                <td className='action-data'>  
                                                     <Button variant="danger" onClick={() => console.log('Delete', file._id)}><FaTrash /></Button>  
                                                     <Button variant="primary" onClick={() => console.log('Download', file._id)}><FaDownload /></Button>  
                                                     <Button variant="info" onClick={() => console.log('Zip and Download', file._id)}><FaCompress /></Button>  
@@ -93,8 +97,9 @@ const Files = () => {
 
                         <div className="category-container">  
                             <div className="category-header" onClick={() => setUndownloadedVisible(!undownloadedVisible)}>  
+                            <Button variant="link" className='category-header-button'>{undownloadedVisible ? <FaRegPlusSquare /> : <FaRegMinusSquare />}</Button>
                                 <h5>Undownloaded Files ({undownloadedFiles.length}) - Total Size: {totalUndownloadedSize} MB</h5>  
-                                <Button variant="link">{undownloadedVisible ? 'Hide' : 'Show'}</Button>  
+                                  
                             </div>  
                             {undownloadedVisible && (  
                                 <Table striped bordered hover responsive>  
@@ -115,14 +120,14 @@ const Files = () => {
                                             <tr key={file._id}>  
                                                 <td>{index + 1}</td>  
                                                 <td>{file.fileName}</td>  
-                                                <td>{file.size}</td>  
-                                                <td>{file.seeders}</td>  
-                                                <td>{file.leechers}</td>  
+                                                <td>{file.size} <FaHdd className="results-icon results-size-icon" /></td>  
+                                                <td>{file.seeders} <FaSeedling className="results-icon results-seeders-icon" /></td>  
+                                                <td>{file.leechers} <FaDownload className="results-icon results-leechers-icon" /></td>  
                                                 <td>{file.status}</td>  
                                                 <td>  
                                                     <ProgressBar now={file.progress} label={`${file.progress}%`} variant={file.progress < 50 ? 'danger' : file.progress < 100 ? 'warning' : 'success'} />  
                                                 </td>  
-                                                <td>  
+                                                <td className='action-data'>  
                                                     <Button variant="danger" onClick={() => console.log('Delete', file._id)}><FaTrash /></Button>  
                                                     <Button variant="success" onClick={() => console.log('Start', file._id)}><FaPlay /></Button>  
                                                     <Button variant="warning" onClick={() => console.log('Pause', file._id)}><FaPause /></Button>  

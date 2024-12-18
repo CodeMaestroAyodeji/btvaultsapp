@@ -1,9 +1,8 @@
 import { useEffect, useState } from 'react';  
-import { Bar } from 'react-chartjs-2';  
 import axios from 'axios';  
 import apiUrl from '../../config/envConfig';  
-import { Card, Spinner, Alert, Row, Col, ListGroup } from 'react-bootstrap';  
-import { FaDownload, FaDatabase, FaCloudUploadAlt, FaTachometerAlt, FaFileAlt } from 'react-icons/fa';  
+import { Card, Spinner, Alert, Row, Col } from 'react-bootstrap';  
+import { FaDownload, FaDatabase, FaUpload, FaCloudUploadAlt, FaTachometerAlt, FaFileAlt } from 'react-icons/fa';  
 import './Analytics.css';  
 
 const Analytics = () => {  
@@ -29,17 +28,6 @@ const Analytics = () => {
         fetchAnalytics();  
     }, []);  
 
-    const chartData = {  
-        labels: ['Total Downloads'],  
-        datasets: [  
-            {  
-                label: 'Downloads',  
-                data: [analytics.totalDownloadedFiles || 0],  
-                backgroundColor: 'rgba(75, 192, 192, 0.6)',  
-            },  
-        ],  
-    };  
-
     return (  
         <Card className="analytics-card">  
             <Card.Body>  
@@ -53,63 +41,71 @@ const Analytics = () => {
                     <Alert variant="danger">{error}</Alert>  
                 ) : (  
                     <>  
-                        <Row className="mt-4">
-                            <Col md={6} lg={4}>
-                                <Card className="metric-card">
-                                    <Card.Body>
-                                        <FaDatabase className="metric-icon" />
-                                        <Card.Title>Total Storage</Card.Title>
-                                        <Card.Text>{analytics.totalStorage} GB</Card.Text>
-                                    </Card.Body>
-                                </Card>
+                        <Row className="mt-4">  
+                            <Col md={6} lg={4}>  
+                                <Card className="metric-card">  
+                                    <Card.Body>  
+                                        <FaDatabase className="metric-icon" />  
+                                        <Card.Title>Total Storage</Card.Title>  
+                                        <Card.Text>{analytics.totalStorage} GB</Card.Text>  
+                                    </Card.Body>  
+                                </Card>  
+                            </Col>  
+                            <Col md={6} lg={4}>  
+                                <Card className="metric-card">  
+                                    <Card.Body>  
+                                        <FaTachometerAlt className="metric-icon" />  
+                                        <Card.Title>Total Used</Card.Title>  
+                                        <Card.Text>{analytics.totalUsed} GB</Card.Text>  
+                                    </Card.Body>  
+                                </Card>  
+                            </Col>  
+                            <Col md={6} lg={4}>  
+                                <Card className="metric-card">  
+                                    <Card.Body>  
+                                        <FaCloudUploadAlt className="metric-icon" />  
+                                        <Card.Title>Upload Speed</Card.Title>  
+                                        <Card.Text>{analytics.uploadSpeed}</Card.Text>  
+                                    </Card.Body>  
+                                </Card>  
+                            </Col>  
+                            <Col md={6} lg={4}>  
+                                <Card className="metric-card">  
+                                    <Card.Body>  
+                                        <FaFileAlt className="metric-icon" />  
+                                        <Card.Title>Total Files</Card.Title>  
+                                        <Card.Text>{analytics.totalFiles}</Card.Text>  
+                                    </Card.Body>  
+                                </Card>  
+                            </Col>  
+                            <Col md={6} lg={4}>  
+                                <Card className="metric-card">  
+                                    <Card.Body>  
+                                        <FaUpload className="metric-icon" />  
+                                        <Card.Title>Total Uploaded Files</Card.Title>  
+                                        <Card.Text>{analytics.totalUploadedFiles}</Card.Text>  
+                                    </Card.Body>  
+                                </Card>  
                             </Col>
-                            <Col md={6} lg={4}>
-                                <Card className="metric-card">
-                                    <Card.Body>
-                                        <FaTachometerAlt className="metric-icon" />
-                                        <Card.Title>Total Used</Card.Title>
-                                        <Card.Text>{analytics.totalUsed} GB</Card.Text>
-                                    </Card.Body>
-                                </Card>
-                            </Col>
-                            <Col md={6} lg={4}>
-                                <Card className="metric-card">
-                                    <Card.Body>
-                                        <FaCloudUploadAlt className="metric-icon" />
-                                        <Card.Title>Download Speed</Card.Title>
-                                        <Card.Text>{analytics.downloadSpeed}</Card.Text>
-                                    </Card.Body>
-                                </Card>
-                            </Col>
-                            <Col md={6} lg={4}>
-                                <Card className="metric-card">
-                                    <Card.Body>
-                                        <FaFileAlt className="metric-icon" />
-                                        <Card.Title>Total Magnet Files</Card.Title>
-                                        <Card.Text>{analytics.totalMagnetFiles}</Card.Text>
-                                    </Card.Body>
-                                </Card>
-                            </Col>
-                            <Col md={6} lg={4}>
-                                <Card className="metric-card">
-                                    <Card.Body>
-                                        <FaDownload className="metric-icon" />
-                                        <Card.Title>Total Uploaded Files</Card.Title>
-                                        <Card.Text>{analytics.totalUploadedFiles}</Card.Text>
-                                    </Card.Body>
-                                </Card>
-                            </Col>
-                            <Col md={6} lg={4}>
-                                <Card className="metric-card">
-                                    <Card.Body>
-                                        <FaDownload className="metric-icon" />
-                                        <Card.Title>Total Downloaded Files</Card.Title>
-                                        <Card.Text>{analytics.totalDownloadedFiles}</Card.Text>
-                                    </Card.Body>
-                                </Card>
-                            </Col>
-                        </Row>
-                        <Bar data={chartData} />  
+                            <Col md={6} lg={4}>  
+                                <Card className="metric-card">  
+                                    <Card.Body>  
+                                        <FaDownload className="metric-icon" />  
+                                        <Card.Title>Total Magnet Files</Card.Title>  
+                                        <Card.Text>{analytics.totalMagnetFiles}</Card.Text>  
+                                    </Card.Body>  
+                                </Card>  
+                            </Col>  
+                            <Col md={6} lg={4}>  
+                                <Card className="metric-card">  
+                                    <Card.Body>  
+                                        <FaDownload className="metric-icon" />  
+                                        <Card.Title>Total Downloaded Files</Card.Title>  
+                                        <Card.Text>{analytics.totalDownloadedFiles}</Card.Text>  
+                                    </Card.Body>  
+                                </Card>  
+                            </Col>  
+                        </Row>  
                     </>  
                 )}  
             </Card.Body>  
