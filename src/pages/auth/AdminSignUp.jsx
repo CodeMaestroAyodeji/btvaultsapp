@@ -1,3 +1,4 @@
+// eslint-disable-next-line no-unused-vars  
 import React, { useState } from 'react';  
 import { ToastContainer, toast } from 'react-toastify';  
 import { Button, Form, Nav } from 'react-bootstrap';  
@@ -6,43 +7,43 @@ import { useNavigate } from 'react-router-dom';  // Import useNavigate
 import 'react-toastify/dist/ReactToastify.css';  
 import '../../assets/css/style.css';  
 
-const Signup = () => {  
+const AdminSignUp = () => {  
   const [name, setName] = useState('');  
-    const [email, setEmail] = useState('');  
-    const [password, setPassword] = useState('');  
-    const navigate = useNavigate(); // Initialize useNavigate  
-  
-    const handleSignup = async (e) => {  
-      e.preventDefault();  
-  
-      // Call to your API for signup  
-      try {  
-        const response = await fetch('/api/auth/register', {  
-          method: 'POST',  
-          headers: { 'Content-Type': 'application/json' },  
-          body: JSON.stringify({ name, email, password }),  
-        });  
-        const data = await response.json();  
-        if (response.ok) {  
-          toast.success(data.message);  
-          // Reset fields after successful signup  
-          setName('');  
-          setEmail('');  
-          setPassword('');  
-  
-          // Navigate to login page after successful signup  
-          navigate('/login');  
-        } else {  
-          toast.error(data.message);  
-        }  
-      } catch (error) {  
-        toast.error('Something went wrong!');  
+  const [email, setEmail] = useState('');  
+  const [password, setPassword] = useState('');  
+  const navigate = useNavigate(); // Initialize useNavigate  
+
+  const handleSignup = async (e) => {  
+    e.preventDefault();  
+
+    // Call to your API for signup  
+    try {  
+      const response = await fetch('/api/auth/create-admin', {  
+        method: 'POST',  
+        headers: { 'Content-Type': 'application/json' },  
+        body: JSON.stringify({ name, email, password }),  
+      });  
+      const data = await response.json();  
+      if (response.ok) {  
+        toast.success(data.message);  
+        // Reset fields after successful signup  
+        setName('');  
+        setEmail('');  
+        setPassword('');  
+
+        // Navigate to login page after successful signup  
+        navigate('/login');  
+      } else {  
+        toast.error(data.message);  
       }  
-    };  
+    } catch (error) {  
+      toast.error('Something went wrong!');  
+    }  
+  };  
 
   return (  
     <div className="form-container">  
-      <h2>Sign Up</h2>  
+      <h2>Admin Sign Up</h2>  
       <Form onSubmit={handleSignup}>  
         <Form.Group controlId="formName">  
           <Form.Label>Name</Form.Label>  
@@ -92,4 +93,4 @@ const Signup = () => {
   );  
 };  
 
-export default Signup;
+export default AdminSignUp;

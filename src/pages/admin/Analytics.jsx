@@ -3,7 +3,7 @@ import axios from 'axios';
 import apiUrl from '../../config/envConfig';   
 import { toast, ToastContainer } from 'react-toastify';   
 import { Card, Row, Col } from 'react-bootstrap';  
-import { FaUsers, FaDatabase, FaCloudUploadAlt, FaCheckCircle } from 'react-icons/fa'; // Importing relevant icons  
+import { FaUsers, FaDatabase, FaCloudUploadAlt, FaCheckCircle, FaDownload, FaClipboardList } from 'react-icons/fa'; // Importing relevant icons  
 import './Analytics.css';  
 
 const Analytics = () => {  
@@ -62,6 +62,33 @@ const Analytics = () => {
                 <FaDatabase className="metric-icon" />  
                 <Card.Title>Total Storage Used</Card.Title>  
                 <Card.Text>{analyticsData.storageUsed} GB</Card.Text>  
+              </Card.Body>  
+            </Card>  
+          </Col>  
+          <Col md={6} lg={3}>  
+            <Card className="metric-card">  
+              <Card.Body>  
+                <FaCloudUploadAlt className="metric-icon" />  
+                <Card.Title>Total Torrents</Card.Title>  
+                <Card.Text>{analyticsData.totalTorrents}</Card.Text>  
+              </Card.Body>  
+            </Card>  
+          </Col>  
+          <Col md={6} lg={3}>  
+            <Card className="metric-card">  
+              <Card.Body>  
+                <FaDownload className="metric-icon" />  
+                <Card.Title>Total Downloads</Card.Title>  
+                <Card.Text>{analyticsData.totalDownloads}</Card.Text>  
+              </Card.Body>  
+            </Card>  
+          </Col>  
+          <Col md={6} lg={3}>  
+            <Card className="metric-card">  
+              <Card.Body>  
+                <FaClipboardList className="metric-icon" />  
+                <Card.Title>Active Subscriptions</Card.Title>  
+                <Card.Text>{analyticsData.totalActiveSubscriptions}</Card.Text>  
               </Card.Body>  
             </Card>  
           </Col>  

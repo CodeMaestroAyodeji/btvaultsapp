@@ -76,6 +76,44 @@ h2 {
   background-color: var(--button-hover-color);
 }
 
+.payment-options {  
+  margin-top: 40px;  
+}  
+
+.payment-options h3 {  
+  margin-bottom: 15px;  
+  color: var(--secondary-color);  
+}  
+
+.payment-methods {  
+  display: flex;  
+  justify-content: center;  
+  flex-wrap: wrap;  
+  gap: 20px;  
+}  
+
+.payment-card {  
+  border: 1px solid #ddd;  
+  border-radius: 12px;  
+  padding: 20px;  
+  text-align: center;  
+  background-color: var(--card-bg-color);  
+  width: 150px; /* Adjust as necessary */  
+  transition: transform 0.3s, box-shadow 0.3s;  
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);  
+}  
+
+.payment-card:hover {  
+  transform: translateY(-5px);  
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);  
+}  
+
+.payment-icon {  
+  width: 60px; /* Icon size */  
+  height: auto;  
+  margin-bottom: 10px;  
+}
+
 @media (max-width: 600px) {
   .plan-card {
       width: 90%; /* Full width on small screens */

@@ -97,7 +97,7 @@ const FileSearch = () => {
 
             {results.length > 0 && (
                 <>
-                    <l className="results-list">
+                    <ul className="results-list">
                         {paginateResults().map((file) => (
                             <li key={file.id} className="result-item">
                                 <h4 className="results-file-name">{file.name}</h4>
@@ -132,7 +132,7 @@ const FileSearch = () => {
                                 </span>
                             </li>
                         ))}
-                    </l>
+                    </ul>
 
                     <div className="pagination">
                         <button

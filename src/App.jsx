@@ -5,6 +5,7 @@ import './App.css'; // Custom CSS
 
 import TorrentManager from './pages/TorrentManager';
 import Signup from './pages/auth/Signup';
+import AdminSignUp from './pages/auth/AdminSignUp';
 import Login from './pages/auth/Login';
 import EmailVerification from './pages/auth/EmailVerification';
 import ForgotPassword from './pages/auth/ForgotPassword';
@@ -22,6 +23,7 @@ import ContactUs from './pages/public/ContactUs';
 import PrivacyPolicy from './pages/public/PrivacyPolicy';
 import TermsOfUse from './pages/public/TermsOfUse';
 import NotFound from './pages/public/NotFound';
+
 
 const ProtectedRoute = ({ isAdmin, children }) => {
   const token = localStorage.getItem("token");
@@ -74,6 +76,7 @@ const App = () => {
             />
             <Route path="/" element={<Home />} />
             <Route path="/signup" element={<Signup />} />
+            <Route path="/admin-signup" element={<AdminSignUp />} />
             <Route path="/login" element={<Login />} />
             <Route path="/verify-email" element={<EmailVerification />} />
             <Route path="/forgot-password" element={<ForgotPassword />} />
