@@ -1,0 +1,16 @@
+.price  {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.plan-duration {
+    font-size: 18px;
+    font-weight: normal;
+}
+
+
+.plan-amount {
+    font-size: 30px;
+}

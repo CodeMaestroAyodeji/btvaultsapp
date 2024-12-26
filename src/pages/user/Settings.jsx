@@ -1,3 +1,5 @@
+// src/pages/user/Settings.jsx
+
 import { useState } from 'react';  
 import axios from 'axios';  
 import { Form, Button, Card, Alert } from 'react-bootstrap';  

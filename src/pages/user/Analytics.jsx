@@ -1,3 +1,5 @@
+// src/pages/user/Analytics.jsx
+
 import { useEffect, useState } from 'react';  
 import axios from 'axios';  
 import apiUrl from '../../config/envConfig';  

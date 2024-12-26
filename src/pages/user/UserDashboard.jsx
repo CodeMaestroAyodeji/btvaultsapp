@@ -1,9 +1,13 @@
+// src/pages/user/UserDashboard.jsx
+
+// eslint-disable-next-line no-unused-vars
 import React, { useState, useEffect } from 'react'; 
-import { FaUserCircle, FaSignOutAlt, FaChartBar, FaCloudDownloadAlt, FaFolderOpen } from 'react-icons/fa';  
+import { FaUserCircle, FaSignOutAlt, FaCrown, FaChartBar, FaCloudDownloadAlt, FaFolderOpen } from 'react-icons/fa';  
 import axios from 'axios';  
 import Files from '../torrent/FileList';  
 import Analytics from './Analytics';  
 import Profile from './Profile';  
+import PlanComparison from '../subscription/plans/PlanComparison';  
 import Torrents from '../torrent/Torrents';  
 import { toast } from 'react-toastify';  
 import { ToastContainer } from 'react-toastify';  
@@ -53,6 +57,8 @@ const UserDashboard = () => {
                 return <Files />;
             case "Profile":
                 return <Profile user={user} />;
+            case "Subscription":
+                return <PlanComparison />;
             default:
                 return <Torrents />;
         }
@@ -86,6 +92,13 @@ const UserDashboard = () => {
               >
                   <FaUserCircle className='dashboardTabs-icon'/> Profile
               </button>
+              <button
+                className={activeTab === "Subscription" ? "active" : ""}
+                    onClick={() => setActiveTab("Subscription")}
+                    >
+                    <FaCrown className='dashboardTabs-icon'/> Subscription
+                </button>
+
               <div className="logoutSection">
                   <button className="logoutBtn" onClick={handleLogout}>
                       <FaSignOutAlt className='dashboardTabs-icon'/> Logout
