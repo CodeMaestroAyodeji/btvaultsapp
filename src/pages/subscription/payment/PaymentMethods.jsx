@@ -8,6 +8,8 @@ import { FaCreditCard } from 'react-icons/fa';
 
 const PaymentMethods = ({ selected, onSelect }) => {
   const methods = [
+    { id: 'paypal', name: 'PayPal', icon: FaCreditCard },
+    { id: 'stripe', name: 'Stripe', icon: FaCreditCard },
     { id: 'paystack', name: 'Paystack', icon: FaCreditCard },
     { id: 'flutterwave', name: 'Flutterwave', icon: FaCreditCard }
   ];

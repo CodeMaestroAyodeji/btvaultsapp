@@ -1,3 +1,12 @@
+:root {
+    --primary-color: #FFC107;
+    --secondary-color: #212121;
+    --button-color: #ee4710;
+    --button-hover-color: #FFA500;
+    --card-bg-color: #f8f9fa;
+    --font-family: 'Arial', sans-serif;
+}
+
 .price  {
     display: flex;
     flex-direction: column;
@@ -13,4 +22,9 @@
 
 .plan-amount {
     font-size: 30px;
+}
+
+.payment-summary {
+    background-color: var(--button-color);
+    color: var(--card-bg-color);
 }
