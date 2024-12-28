@@ -7,7 +7,7 @@ import { useNavigate } from 'react-router-dom';  // Import useNavigate
 import 'react-toastify/dist/ReactToastify.css';  
 import '../../assets/css/style.css';  
 import axios from 'axios';  
-import { apiUrl } from '../../config';  
+import apiUrl from '../../config/envConfig'; 
 
 const AdminSignUp = () => {  
   const [name, setName] = useState('');  
