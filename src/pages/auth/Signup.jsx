@@ -5,6 +5,9 @@ import { FaUser, FaEnvelope, FaLock } from 'react-icons/fa';
 import { useNavigate } from 'react-router-dom';  // Import useNavigate  
 import 'react-toastify/dist/ReactToastify.css';  
 import '../../assets/css/style.css';  
+import apiUrl from '../../config/envConfig';  
+import axios from 'axios'; 
+
 
 const Signup = () => {  
   const [name, setName] = useState('');  
@@ -17,7 +20,7 @@ const Signup = () => {
   
       // Call to your API for signup  
       try {  
-        const response = await fetch('/api/auth/register', {  
+        const response = await axios.post(`${apiUrl}/api/auth/register`, {  
           method: 'POST',  
           headers: { 'Content-Type': 'application/json' },  
           body: JSON.stringify({ name, email, password }),  
