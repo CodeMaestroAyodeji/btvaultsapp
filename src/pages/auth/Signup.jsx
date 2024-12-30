@@ -1,3 +1,5 @@
+// pages/auth/Signup.jsx
+
 import React, { useState } from 'react';  
 import { ToastContainer, toast } from 'react-toastify';  
 import { Button, Form, Nav } from 'react-bootstrap';  
@@ -10,37 +12,47 @@ import axios from 'axios';
 
 const Signup = () => {  
   const [name, setName] = useState('');  
-    const [email, setEmail] = useState('');  
-    const [password, setPassword] = useState('');  
-    const navigate = useNavigate(); // Initialize useNavigate  
+  const [email, setEmail] = useState('');  
+  const [password, setPassword] = useState('');  
+  const navigate = useNavigate(); // Initialize useNavigate  
   
-    const handleSignup = async (e) => {  
-      e.preventDefault();  
+  const handleSignup = async (e) => {  
+    e.preventDefault();  
   
-      // Call to your API for signup  
-      try {  
-        const response = await axios.post(`${apiUrl}/api/auth/register`, {  
-          method: 'POST',  
-          headers: { 'Content-Type': 'application/json' },  
-          body: JSON.stringify({ name, email, password }),  
-        });  
-        const data = await response.json();  
-        if (response.ok) {  
-          toast.success(data.message);  
-          // Reset fields after successful signup  
-          setName('');  
-          setEmail('');  
-          setPassword('');  
+    // Call to your API for signup  
+    try {  
+      const response = await axios.post(`${apiUrl}/api/auth/register`, {  
+        name,
+        email,
+        password,
+      });
+
+      if (response.status === 201) {  // Check for a successful creation status
+        toast.success(response.data.message);  
+        // Reset fields after successful signup  
+        setName('');  
+        setEmail('');  
+        setPassword('');  
   
-          // Navigate to login page after successful signup  
-          navigate('/login');  
-        } else {  
-          toast.error(data.message);  
-        }  
-      } catch (error) {  
-        toast.error('Something went wrong!');  
+        // Navigate to login page after successful signup  
+        navigate('/login');  
+      } else {  
+        toast.error(response.data.message);  
       }  
-    };  
+    } catch (error) {  
+      if (error.response) {
+        // The request was made and the server responded with a status code
+        // that falls out of the range of 2xx
+        toast.error(error.response.data.message || 'Something went wrong!');
+      } else if (error.request) {
+        // The request was made but no response was received
+        toast.error('No response from server. Please try again later.');
+      } else {
+        // Something happened in setting up the request that triggered an Error
+        toast.error('Something went wrong!');
+      }
+    }  
+  };  
 
   return (  
     <div className="form-container">  

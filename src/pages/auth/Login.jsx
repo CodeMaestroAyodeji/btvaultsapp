@@ -9,7 +9,6 @@ import '../../assets/css/style.css';
 import axios from 'axios'; 
 import apiUrl from '../../config/envConfig';
 
-
 const Login = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -96,7 +95,7 @@ const Login = () => {
         {/* Google reCAPTCHA */}
         <div className={'loginGrecaptchaBadge'}>
           <ReCAPTCHA
-            sitekey={import.meta.env.VITE_RECAPTCHA_SITE_KEY} // Ensure this env variable is set
+            sitekey={process.env.REACT_APP_RECAPTCHA_SITE_KEY} // Ensure this env variable is set
             onChange={(value) => setCaptchaValue(value)}
           />
         </div>

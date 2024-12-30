@@ -1,9 +1,10 @@
-// eslint-disable-next-line no-unused-vars  
+// pages/auth/AdminSignUp.jsx
+
 import React, { useState } from 'react';  
 import { ToastContainer, toast } from 'react-toastify';  
 import { Button, Form, Nav } from 'react-bootstrap';  
 import { FaUser, FaEnvelope, FaLock } from 'react-icons/fa';  
-import { useNavigate } from 'react-router-dom';  // Import useNavigate  
+import { useNavigate } from 'react-router-dom';  
 import 'react-toastify/dist/ReactToastify.css';  
 import '../../assets/css/style.css';  
 import axios from 'axios';  
@@ -13,33 +14,38 @@ const AdminSignUp = () => {
   const [name, setName] = useState('');  
   const [email, setEmail] = useState('');  
   const [password, setPassword] = useState('');  
-  const navigate = useNavigate(); // Initialize useNavigate  
-
+  const navigate = useNavigate();  
+  
   const handleSignup = async (e) => {  
     e.preventDefault();  
-
-    // Call to your API for signup  
+  
     try {  
       const response = await axios.post(`${apiUrl}/api/auth/create-admin`, {  
-        method: 'POST',  
-        headers: { 'Content-Type': 'application/json' },  
-        body: JSON.stringify({ name, email, password }),  
-      });  
-      const data = await response.json();  
-      if (response.ok) {  
-        toast.success(data.message);  
-        // Reset fields after successful signup  
-        setName('');  
-        setEmail('');  
-        setPassword('');  
+        name,
+        email,
+        password,
+      });
 
-        // Navigate to login page after successful signup  
-        navigate('/login');  
+      if (response.status === 201) {  // Check for a successful creation status
+        toast.success(response.data.message);
+        // Reset fields after successful signup
+        setName('');
+        setEmail('');
+        setPassword('');
+
+        // Navigate to login page after successful signup
+        navigate('/login');
       } else {  
-        toast.error(data.message);  
+        toast.error(response.data.message);  
       }  
     } catch (error) {  
-      toast.error('Something went wrong!');  
+      if (error.response) {
+        toast.error(error.response.data.message || 'Something went wrong!');
+      } else if (error.request) {
+        toast.error('No response from server. Please try again later.');
+      } else {
+        toast.error('Something went wrong!');
+      }
     }  
   };  
 
