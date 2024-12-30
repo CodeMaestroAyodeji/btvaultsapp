@@ -8,7 +8,6 @@ import '../../assets/css/style.css';
 import apiUrl from '../../config/envConfig';  
 import axios from 'axios'; 
 
-
 const Signup = () => {  
   const [name, setName] = useState('');  
     const [email, setEmail] = useState('');  
