@@ -1,10 +1,8 @@
-// pages/auth/Signup.jsx
-
 import React, { useState } from 'react';  
 import { ToastContainer, toast } from 'react-toastify';  
 import { Button, Form, Nav } from 'react-bootstrap';  
 import { FaUser, FaEnvelope, FaLock } from 'react-icons/fa';  
-import { useNavigate } from 'react-router-dom';  // Import useNavigate  
+import { useNavigate } from 'react-router-dom';  
 import 'react-toastify/dist/ReactToastify.css';  
 import '../../assets/css/style.css';  
 import apiUrl from '../../config/envConfig';  
@@ -14,7 +12,7 @@ const Signup = () => {
   const [name, setName] = useState('');  
   const [email, setEmail] = useState('');  
   const [password, setPassword] = useState('');  
-  const navigate = useNavigate(); // Initialize useNavigate  
+  const navigate = useNavigate();  
   
   const handleSignup = async (e) => {  
     e.preventDefault();  
@@ -28,7 +26,7 @@ const Signup = () => {
       });
 
       if (response.status === 201) {  // Check for a successful creation status
-        toast.success(response.data.message);  
+        toast.success(response.data.message || 'User registered successfully. Please verify your email.');  
         // Reset fields after successful signup  
         setName('');  
         setEmail('');  
@@ -37,18 +35,17 @@ const Signup = () => {
         // Navigate to login page after successful signup  
         navigate('/login');  
       } else {  
-        toast.error(response.data.message);  
+        toast.error(response.data.message || 'Registration failed.');  
       }  
     } catch (error) {  
       if (error.response) {
-        // The request was made and the server responded with a status code
-        // that falls out of the range of 2xx
+        // Server responded with a status outside the 2xx range
         toast.error(error.response.data.message || 'Something went wrong!');
       } else if (error.request) {
-        // The request was made but no response was received
+        // No response was received
         toast.error('No response from server. Please try again later.');
       } else {
-        // Something happened in setting up the request that triggered an Error
+        // Something happened while setting up the request
         toast.error('Something went wrong!');
       }
     }  
@@ -101,7 +98,7 @@ const Signup = () => {
           Already have an account? Log In  
         </Nav.Link>  
       </Nav>  
-      <ToastContainer />  
+      <ToastContainer />  {/* Ensure the ToastContainer is rendered */}
     </div>  
   );  
 };  
