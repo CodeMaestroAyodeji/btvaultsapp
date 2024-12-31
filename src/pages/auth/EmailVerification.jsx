@@ -1,34 +1,43 @@
-import React from 'react';  
-import Swal from 'sweetalert2';  
-import { Button } from 'react-bootstrap';  
-import { useNavigate } from 'react-router-dom';  
-import axios from 'axios'; 
-import apiUrl from '../../config/envConfig';  
+import React, { useEffect } from 'react';
+import Swal from 'sweetalert2';
+import { Button } from 'react-bootstrap';
+import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
+import apiUrl from '../../config/envConfig';
 
-const EmailVerification = () => {  
-  const navigate = useNavigate();  
+const EmailVerification = () => {
+  const navigate = useNavigate();
 
-  const handleVerifyEmail = async () => {  
-    try {  
-      const response = await axios.post(`${apiUrl}/api/auth/verify-email`, {  
-        token: new URLSearchParams(window.location.search).get('token')  
-      });  
+  const handleVerifyEmail = async () => {
+    try {
+      const token = new URLSearchParams(window.location.search).get('token');
+      if (!token) {
+        Swal.fire({
+          icon: 'error',
+          title: 'Error',
+          text: 'Token not found in URL!',
+        });
+        return;
+      }
 
-      if (response.status === 200) {  
+      const response = await axios.post(`${apiUrl}/api/auth/verify-email`, { token });
+
+      if (response.status === 200) {
         Swal.fire({
           icon: 'success',
           title: 'Success',
           text: response.data.message,
+        }).then(() => {
+          navigate('/login');
         });
-        navigate('/login');  
-      } else {  
+      } else {
         Swal.fire({
           icon: 'error',
           title: 'Error',
           text: response.data.message,
         });
-      }  
-    } catch (error) {  
+      }
+    } catch (error) {
       if (error.response) {
         Swal.fire({
           icon: 'error',
@@ -41,19 +50,21 @@ const EmailVerification = () => {
           title: 'Error',
           text: 'Something went wrong!',
         });
-      }  
-    }  
-  };  
+      }
+    }
+  };
 
-  return (  
-    <div className="form-container">  
-      <h2>Email Verification</h2>  
-      <p style={{ color: '#ee4710' }}>Please verify your email address.</p>  
-      <Button variant="primary" onClick={handleVerifyEmail} style={{ backgroundColor: '#ee4710' }}>  
-        Verify Email  
-      </Button>  
-    </div>  
-  );  
-};  
+  // Automatically verify email when the component mounts
+  useEffect(() => {
+    handleVerifyEmail();
+  }, []);
+
+  return (
+    <div className="form-container">
+      <h2>Email Verification</h2>
+      <p style={{ color: '#ee4710' }}>Verifying your email address...</p>
+    </div>
+  );
+};
 
 export default EmailVerification;
