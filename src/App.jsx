@@ -23,7 +23,7 @@ import ContactUs from './pages/public/ContactUs';
 import PrivacyPolicy from './pages/public/PrivacyPolicy';
 import TermsOfUse from './pages/public/TermsOfUse';
 import NotFound from './pages/public/NotFound';
-
+import PasswordResetLinkSent from './pages/auth/PasswordResetLinkSent';
 
 const ProtectedRoute = ({ isAdmin, children }) => {
   const token = localStorage.getItem("token");
@@ -88,6 +88,7 @@ const App = () => {
             <Route path="/contact-us" element={<ContactUs />} />
             <Route path="/privacy-policy" element={<PrivacyPolicy />} />
             <Route path="/terms-of-use" element={<TermsOfUse />} />
+            <Route path="/password-reset-link-sent" element={<PasswordResetLinkSent />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
         </main>

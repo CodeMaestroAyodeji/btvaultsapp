@@ -1,15 +1,17 @@
 // eslint-disable-next-line no-unused-vars
 import React, { useState } from 'react';
-import { ToastContainer, toast } from 'react-toastify';
+import Swal from 'sweetalert2';
 import { Button, Form } from 'react-bootstrap';
 import { FaLock } from 'react-icons/fa';
-import 'react-toastify/dist/ReactToastify.css';
+import 'sweetalert2/src/sweetalert2.scss';
+import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import apiUrl from '../../config/envConfig'; // Import your API URL
 
 const ResetPassword = () => {
   const [newPassword, setNewPassword] = useState('');
   const [token] = useState(new URLSearchParams(window.location.search).get('token'));
+  const navigate = useNavigate();
 
   const handleResetPassword = async (e) => {
     e.preventDefault();
@@ -19,17 +21,36 @@ const ResetPassword = () => {
         token,
         newPassword
       });
-      
+
       if (response.status === 200) {
-        toast.success(response.data.message);
+        Swal.fire({
+          icon: 'success',
+          title: 'Success',
+          text: response.data.message,
+        }).then(() => {
+          // Navigate to the login page after successful password reset
+          navigate('/login');
+        });
       } else {
-        toast.error(response.data.message);
+        Swal.fire({
+          icon: 'error',
+          title: 'Error',
+          text: response.data.message,
+        });
       }
     } catch (error) {
       if (error.response) {
-        toast.error(error.response.data.message || 'Something went wrong!');
+        Swal.fire({
+          icon: 'error',
+          title: 'Error',
+          text: error.response.data.message || 'Something went wrong!',
+        });
       } else {
-        toast.error('Something went wrong!');
+        Swal.fire({
+          icon: 'error',
+          title: 'Error',
+          text: 'Something went wrong!',
+        });
       }
     }
   };
@@ -52,7 +73,6 @@ const ResetPassword = () => {
           Reset Password
         </Button>
       </Form>
-      <ToastContainer />
     </div>
   );
 };

@@ -1,10 +1,9 @@
-
 // eslint-disable-next-line no-unused-vars
 import React, { useState } from 'react';
-import { ToastContainer, toast } from 'react-toastify';
+import Swal from 'sweetalert2';
 import { Button, Form } from 'react-bootstrap';
 import { FaEnvelope, FaLock } from 'react-icons/fa';
-import 'react-toastify/dist/ReactToastify.css';
+import 'sweetalert2/src/sweetalert2.scss';
 import { useNavigate } from 'react-router-dom';
 import ReCAPTCHA from 'react-google-recaptcha';
 import '../../assets/css/style.css';
@@ -22,12 +21,20 @@ const Login = () => {
 
     // Form Validation
     if (!email || !password) {
-      toast.error('Email and password are required!');
+      Swal.fire({
+        icon: 'error',
+        title: 'Error',
+        text: 'Email and password are required!',
+      });
       return;
     }
 
     if (!captchaValue) {
-      toast.error('Please verify that you are not a robot!');
+      Swal.fire({
+        icon: 'error',
+        title: 'Error',
+        text: 'Please verify that you are not a robot!',
+      });
       return;
     }
 
@@ -40,7 +47,11 @@ const Login = () => {
 
       // Successful login
       if (response.status === 200) {
-        toast.success('Login successful!');
+        Swal.fire({
+          icon: 'success',
+          title: 'Success',
+          text: 'Login successful!',
+        });
         const { token, user } = response.data;
 
         // Save token and user role in local storage
@@ -58,10 +69,18 @@ const Login = () => {
       // Handle errors
       if (error.response) {
         // Server-side errors
-        toast.error(error.response.data.message || 'Something went wrong!');
+        Swal.fire({
+          icon: 'error',
+          title: 'Error',
+          text: error.response.data.message || 'Something went wrong!',
+        });
       } else {
         // Network or client-side errors
-        toast.error('Unable to connect to the server!');
+        Swal.fire({
+          icon: 'error',
+          title: 'Error',
+          text: 'Unable to connect to the server!',
+        });
       }
     }
   };
@@ -114,9 +133,6 @@ const Login = () => {
         <span> | </span>
         <a href="/signup">Sign Up</a>
       </div>
-
-      {/* Toast Notifications */}
-      <ToastContainer />
     </div>
   );
 };

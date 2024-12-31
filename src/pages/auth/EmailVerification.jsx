@@ -1,5 +1,5 @@
 import React from 'react';  
-import { ToastContainer, toast } from 'react-toastify';  
+import Swal from 'sweetalert2';  
 import { Button } from 'react-bootstrap';  
 import { useNavigate } from 'react-router-dom';  
 import axios from 'axios'; 
@@ -15,16 +15,32 @@ const EmailVerification = () => {
       });  
 
       if (response.status === 200) {  
-        toast.success(response.data.message);  
+        Swal.fire({
+          icon: 'success',
+          title: 'Success',
+          text: response.data.message,
+        });
         navigate('/login');  
       } else {  
-        toast.error(response.data.message);  
+        Swal.fire({
+          icon: 'error',
+          title: 'Error',
+          text: response.data.message,
+        });
       }  
     } catch (error) {  
       if (error.response) {
-        toast.error(error.response.data.message || 'Something went wrong!');
+        Swal.fire({
+          icon: 'error',
+          title: 'Error',
+          text: error.response.data.message || 'Something went wrong!',
+        });
       } else {
-        toast.error('Something went wrong!');
+        Swal.fire({
+          icon: 'error',
+          title: 'Error',
+          text: 'Something went wrong!',
+        });
       }  
     }  
   };  
@@ -36,7 +52,6 @@ const EmailVerification = () => {
       <Button variant="primary" onClick={handleVerifyEmail} style={{ backgroundColor: '#ee4710' }}>  
         Verify Email  
       </Button>  
-      <ToastContainer />  
     </div>  
   );  
 };  

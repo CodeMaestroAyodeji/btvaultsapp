@@ -1,12 +1,12 @@
 import React, { useState } from 'react';  
-import { ToastContainer, toast } from 'react-toastify';  
+import Swal from 'sweetalert2';  
 import { Button, Form, Nav } from 'react-bootstrap';  
 import { FaUser, FaEnvelope, FaLock } from 'react-icons/fa';  
 import { useNavigate } from 'react-router-dom';  
-import 'react-toastify/dist/ReactToastify.css';  
+import 'sweetalert2/src/sweetalert2.scss';  
 import '../../assets/css/style.css';  
-import apiUrl from '../../config/envConfig';  
-import axios from 'axios'; 
+import axios from 'axios';  
+import apiUrl from '../../config/envConfig'; 
 
 const Signup = () => {  
   const [name, setName] = useState('');  
@@ -26,7 +26,11 @@ const Signup = () => {
       });
 
       if (response.status === 201) {  // Check for a successful creation status
-        toast.success(response.data.message || 'User registered successfully. Please verify your email.');  
+        Swal.fire({
+          icon: 'success',
+          title: 'Success',
+          text: response.data.message || 'User registered successfully. Please verify your email.',
+        });
         // Reset fields after successful signup  
         setName('');  
         setEmail('');  
@@ -35,18 +39,34 @@ const Signup = () => {
         // Navigate to login page after successful signup  
         navigate('/login');  
       } else {  
-        toast.error(response.data.message || 'Registration failed.');  
+        Swal.fire({
+          icon: 'error',
+          title: 'Error',
+          text: response.data.message || 'Registration failed.',
+        });
       }  
     } catch (error) {  
       if (error.response) {
         // Server responded with a status outside the 2xx range
-        toast.error(error.response.data.message || 'Something went wrong!');
+        Swal.fire({
+          icon: 'error',
+          title: 'Error',
+          text: error.response.data.message || 'Something went wrong!',
+        });
       } else if (error.request) {
         // No response was received
-        toast.error('No response from server. Please try again later.');
+        Swal.fire({
+          icon: 'error',
+          title: 'Error',
+          text: 'No response from server. Please try again later.',
+        });
       } else {
         // Something happened while setting up the request
-        toast.error('Something went wrong!');
+        Swal.fire({
+          icon: 'error',
+          title: 'Error',
+          text: 'Something went wrong!',
+        });
       }
     }  
   };  
@@ -98,7 +118,6 @@ const Signup = () => {
           Already have an account? Log In  
         </Nav.Link>  
       </Nav>  
-      <ToastContainer />  {/* Ensure the ToastContainer is rendered */}
     </div>  
   );  
 };  
