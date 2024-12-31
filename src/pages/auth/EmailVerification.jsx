@@ -1,7 +1,9 @@
 import React from 'react';  
 import { ToastContainer, toast } from 'react-toastify';  
 import { Button } from 'react-bootstrap';  
-import { useNavigate } from 'react-router-dom'; // Import useNavigate  
+import { useNavigate } from 'react-router-dom'; // Import useNavigate 
+import axios from 'axios'; 
+import apiUrl from '../../config/envConfig';  
 
 const EmailVerification = () => {  
   const navigate = useNavigate(); // Initialize useNavigate  
@@ -9,23 +11,25 @@ const EmailVerification = () => {
   const handleVerifyEmail = async () => {  
     // Call to your API for email verification  
     try {  
-      const response = await fetch('/api/auth/verify-email', {  
-        method: 'POST',  
-        headers: { 'Content-Type': 'application/json' },  
-        body: JSON.stringify({ token: new URLSearchParams(window.location.search).get('token') }),  
+      const response = await axios.post(`${apiUrl}/api/auth/verify-email`, {  
+        token: new URLSearchParams(window.location.search).get('token')  
       });  
-      const data = await response.json();  
-      if (response.ok) {  
-        toast.success(data.message);  
+
+      if (response.status === 200) {  
+        toast.success(response.data.message);  
         
         // Navigate to login page upon successful verification  
         navigate('/login');  
       } else {  
-        toast.error(data.message);  
+        toast.error(response.data.message);  
       }  
       
     } catch (error) {  
-      toast.error('Something went wrong!');  
+      if (error.response) {
+        toast.error(error.response.data.message || 'Something went wrong!');
+      } else {
+        toast.error('Something went wrong!');
+      }  
     }  
   };  
 

@@ -4,6 +4,8 @@ import { ToastContainer, toast } from 'react-toastify';
 import { Button, Form } from 'react-bootstrap';
 import { FaEnvelope } from 'react-icons/fa';
 import 'react-toastify/dist/ReactToastify.css';
+import axios from 'axios';
+import apiUrl from '../../config/envConfig'; // Import your API URL
 
 const ForgotPassword = () => {
   const [email, setEmail] = useState('');
@@ -12,19 +14,19 @@ const ForgotPassword = () => {
     e.preventDefault();
     // Call to your API for forgot password
     try {
-      const response = await fetch('/api/auth/forgot-password', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ email }),
-      });
-      const data = await response.json();
-      if (response.ok) {
-        toast.success(data.message);
+      const response = await axios.post(`${apiUrl}/api/auth/forgot-password`, { email });
+      
+      if (response.status === 200) {
+        toast.success(response.data.message);
       } else {
-        toast.error(data.message);
+        toast.error(response.data.message);
       }
     } catch (error) {
-      toast.error('Something went wrong!');
+      if (error.response) {
+        toast.error(error.response.data.message || 'Something went wrong!');
+      } else {
+        toast.error('Something went wrong!');
+      }
     }
   };
 

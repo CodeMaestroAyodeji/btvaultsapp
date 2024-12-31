@@ -4,6 +4,8 @@ import { ToastContainer, toast } from 'react-toastify';
 import { Button, Form } from 'react-bootstrap';
 import { FaLock } from 'react-icons/fa';
 import 'react-toastify/dist/ReactToastify.css';
+import axios from 'axios';
+import apiUrl from '../../config/envConfig'; // Import your API URL
 
 const ResetPassword = () => {
   const [newPassword, setNewPassword] = useState('');
@@ -13,20 +15,22 @@ const ResetPassword = () => {
     e.preventDefault();
     // Call to your API for password reset
     try {
-      const response = await fetch('/api/auth/reset-password', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ token, newPassword }),
+      const response = await axios.post(`${apiUrl}/api/auth/reset-password`, {
+        token,
+        newPassword
       });
-      const data = await response.json();
-      if (response.ok) {
-        toast.success(data.message);
+      
+      if (response.status === 200) {
+        toast.success(response.data.message);
       } else {
-        toast.error(data.message);
+        toast.error(response.data.message);
       }
-      // eslint-disable-next-line no-unused-vars
     } catch (error) {
-      toast.error('Something went wrong!');
+      if (error.response) {
+        toast.error(error.response.data.message || 'Something went wrong!');
+      } else {
+        toast.error('Something went wrong!');
+      }
     }
   };
 
