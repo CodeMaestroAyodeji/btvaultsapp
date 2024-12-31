@@ -1,3 +1,5 @@
+
+// eslint-disable-next-line no-unused-vars
 import React, { useState } from 'react';
 import { ToastContainer, toast } from 'react-toastify';
 import { Button, Form } from 'react-bootstrap';
@@ -95,7 +97,7 @@ const Login = () => {
         {/* Google reCAPTCHA */}
         <div className={'loginGrecaptchaBadge'}>
           <ReCAPTCHA
-            sitekey={process.env.REACT_APP_RECAPTCHA_SITE_KEY} // Ensure this env variable is set
+            sitekey={import.meta.env.VITE_RECAPTCHA_SITE_KEY} // Ensure this env variable is set
             onChange={(value) => setCaptchaValue(value)}
           />
         </div>
