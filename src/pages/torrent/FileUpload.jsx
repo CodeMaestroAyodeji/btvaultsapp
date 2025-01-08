@@ -19,31 +19,31 @@ const FileUpload = () => {
     };
 
     // Handle file upload
-    const handleUpload = async () => {
-        if (!selectedFile) {
-            setAlertType('danger');
-            setAlertMessage('Please select a file to upload.');
-            return;
-        }
-
-        const formData = new FormData();
-        formData.append('torrentFile', selectedFile);
-
-        setLoading(true);
-        try {
-            await axios.post(`${apiUrl}/api/torrents/upload`, formData, {
-                headers: { Authorization: `Bearer ${localStorage.getItem('token')}` },
-            });
-            setAlertType('success');
-            setAlertMessage('File uploaded successfully!');
-            setSelectedFile(null);
-        } catch (error) {
-            console.error('Error uploading file:', error);
-            setAlertType('danger');
-            setAlertMessage('An error occurred while uploading the file.');
-        } finally {
-            setLoading(false);
-        }
+    const handleUpload = async () => {  
+        if (!selectedFile) {  
+            setAlertType('danger');  
+            setAlertMessage('Please select a file to upload.');  
+            return;  
+        }  
+    
+        const formData = new FormData();  
+        formData.append('torrentFile', selectedFile); // Ensure this matches backend  
+    
+        setLoading(true);  
+        try {  
+            await axios.post(`${apiUrl}/api/torrents/upload`, formData, {  
+                headers: { Authorization: `Bearer ${localStorage.getItem('token')}` },  
+            });  
+            setAlertType('success');  
+            setAlertMessage('File uploaded successfully!');  
+            setSelectedFile(null);  
+        } catch (error) {  
+            console.error('Error uploading file:', error.response.data); // Log error response  
+            setAlertType('danger');  
+            setAlertMessage('An error occurred while uploading the file.');  
+        } finally {  
+            setLoading(false);  
+        }  
     };
 
     return (
