@@ -4,25 +4,26 @@ import React, { useState } from 'react';
 import { FaUpload } from 'react-icons/fa';
 import axios from 'axios';
 import apiUrl from '../../config/envConfig';
+import Swal from 'sweetalert2';
 import './FileUpload.css';
 
 const FileUpload = () => {
     const [selectedFile, setSelectedFile] = useState(null);
     const [loading, setLoading] = useState(false);
-    const [alertMessage, setAlertMessage] = useState('');
-    const [alertType, setAlertType] = useState('success');
 
     // Handle file selection
     const handleFileChange = (e) => {
         setSelectedFile(e.target.files[0]);
-        setAlertMessage('');
     };
 
     // Handle file upload
     const handleUpload = async () => {  
         if (!selectedFile) {  
-            setAlertType('danger');  
-            setAlertMessage('Please select a file to upload.');  
+            Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: 'Please select a file to upload.',
+            });
             return;  
         }  
     
@@ -34,13 +35,19 @@ const FileUpload = () => {
             await axios.post(`${apiUrl}/api/torrents/upload`, formData, {  
                 headers: { Authorization: `Bearer ${localStorage.getItem('token')}` },  
             });  
-            setAlertType('success');  
-            setAlertMessage('File uploaded successfully!');  
+            Swal.fire({
+                icon: 'success',
+                title: 'Success',
+                text: 'File uploaded successfully!',
+            });
             setSelectedFile(null);  
         } catch (error) {  
             console.error('Error uploading file:', error.response.data); // Log error response  
-            setAlertType('danger');  
-            setAlertMessage('An error occurred while uploading the file.');  
+            Swal.fire({
+                icon: 'error',
+                title: 'Error',
+                text: 'An error occurred while uploading the file.',
+            });
         } finally {  
             setLoading(false);  
         }  
@@ -49,15 +56,6 @@ const FileUpload = () => {
     return (
         <div className="file-upload-container">
             <h2 className="file-upload-title">Upload Torrent File</h2>
-
-            {alertMessage && (
-                <div
-                    className={`alert ${alertType === 'success' ? 'alert-success' : 'alert-danger'}`}
-                    role="alert"
-                >
-                    {alertMessage}
-                </div>
-            )}
 
             <div className="file-upload-input-group">
                 <input
