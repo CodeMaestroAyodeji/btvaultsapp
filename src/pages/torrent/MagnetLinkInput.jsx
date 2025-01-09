@@ -10,7 +10,9 @@ const MagnetLinkInput = () => {
     const [loading, setLoading] = useState(false);
 
     const handleAddMagnetLink = async () => {
-        if (!magnetLink.trim()) {
+        const trimmedMagnetLink = magnetLink.trim();
+    
+        if (!trimmedMagnetLink) {
             Swal.fire({
                 icon: 'error',
                 title: 'Oops...',
@@ -18,16 +20,12 @@ const MagnetLinkInput = () => {
             });
             return;
         }
-
+    
         setLoading(true);
         try {
-            // Debugging: Log the request data
-            console.log('Request Data:', { magnetLink });
-            console.log('Request Headers:', { Authorization: `Bearer ${localStorage.getItem('token')}` });
-
             await axios.post(
                 `${apiUrl}/api/torrents/add-magnet`,
-                { magnetLink },
+                { magnetLink: trimmedMagnetLink },
                 {
                     headers: { Authorization: `Bearer ${localStorage.getItem('token')}` },
                 }
@@ -39,7 +37,7 @@ const MagnetLinkInput = () => {
             });
             setMagnetLink('');
         } catch (error) {
-            console.error('Error adding magnet link:', error.response.data); // Log error response
+            console.error('Error adding magnet link:', error.response ? error.response.data : error); // Log error response
             Swal.fire({
                 icon: 'error',
                 title: 'Error',
