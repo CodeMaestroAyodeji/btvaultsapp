@@ -59,9 +59,18 @@ const Analytics = () => {
           <Col md={6} lg={3}>  
             <Card className="metric-card">  
               <Card.Body>  
+                <FaUsers className="metric-icon" />  
+                <Card.Title>Admin Users</Card.Title>  {/* Add admin users card */}
+                <Card.Text>{analyticsData.totalAdminUsers}</Card.Text>  
+              </Card.Body>  
+            </Card>  
+          </Col>  
+          <Col md={6} lg={3}>  
+            <Card className="metric-card">  
+              <Card.Body>  
                 <FaDatabase className="metric-icon" />  
                 <Card.Title>Total Storage Used</Card.Title>  
-                <Card.Text>{analyticsData.storageUsed} GB</Card.Text>  
+                <Card.Text>{analyticsData.storageUsed} GB</Card.Text> {/* Display rounded storage */}  
               </Card.Body>  
             </Card>  
           </Col>  
